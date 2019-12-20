@@ -1,6 +1,6 @@
 import pygame
 import random
-
+import time
 from os import path
 WIDTH = 480
 HEIGHT = 600
@@ -27,9 +27,12 @@ bullet_img = pygame.image.load(path.join(img_dir, "bull.png")).convert()
 boss_img = pygame.image.load(path.join(img_dir, "boss.png")).convert()
 
 shoot_snd = pygame.mixer.Sound(path.join(snd_dir, 'water.wav'))
-shoot_snd.set_volume(0.2)
+shoot_snd.set_volume(0.5)
 pain_snd = pygame.mixer.Sound(path.join(snd_dir, 'pain.wav'))
 stage2_snd = pygame.mixer.Sound(path.join(snd_dir, 'stage2.wav'))
+water2_snd = pygame.mixer.Sound(path.join(snd_dir, 'water2.wav'))
+bull_snd = pygame.mixer.Sound(path.join(snd_dir, 'pew.wav'))
+bull_snd.set_volume(0.5)
 
 all_sprites = pygame.sprite.Group()
 
@@ -83,6 +86,7 @@ class Player(pygame.sprite.Sprite):
         bullet = Bullet( self.rect.centerx,  self.rect.top)
         all_sprites.add(bullet)
         bullets.add(bullet)
+        bull_snd.play()
         
 
 player = Player()
